@@ -142,6 +142,8 @@ function setupDrawing() {
 
   saveBtn.addEventListener('click', () => {
     const dataURL = drawCanvas.toDataURL();
+    localStorage.setItem('doodleQuestCharacter', dataURL);
+
     const img = new Image();
     img.onload = () => {
       characterImage = img;
@@ -419,5 +421,21 @@ document.addEventListener('keydown', (e) => {
 
 // Init
 setupDrawing();
+
+// Load saved character if exists
+const savedChar = localStorage.getItem('doodleQuestCharacter');
+if (savedChar) {
+  const img = new Image();
+  img.onload = () => {
+    characterImage = img;
+    previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+    previewCtx.drawImage(img, 0, 0, previewCanvas.width, previewCanvas.height);
+    statusText.textContent = 'Character Loaded from Memory!';
+    statusText.style.color = '#10b981';
+    drawGame(); // Redraw game canvas with the loaded character
+  };
+  img.src = savedChar;
+}
+
 // Draw initial empty game state
 drawGame();
