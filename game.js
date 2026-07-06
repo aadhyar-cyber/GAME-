@@ -58,17 +58,17 @@ const ERAS = {
   prehistoric: {
     bg: '#451a03', // dark brown
     laneLines: '#78350f',
-    obstacleEmojis: ['🌲', '🌳'] // Trees
+    obstacleEmojis: ['🌲'] // Only Trees
   },
   medieval: {
     bg: '#1e293b', // slate
     laneLines: '#334155',
-    obstacleEmojis: ['🐦', '🦅'] // Birds
+    obstacleEmojis: ['🐦'] // Only Birds
   },
   future: {
     bg: '#2563eb', // Brighter futuristic blue so character is very visible
     laneLines: '#67e8f9', // Bright neon cyan lines
-    obstacleEmojis: ['🚗', '🏎️'] // Cars
+    obstacleEmojis: ['🚗'] // Only Cars
   }
 };
 
