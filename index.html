@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doodle Quest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <h1>Doodle Quest</h1>
+          <p>Draw your hero, pick an era, and dash through a Subway-style runner.</p>
+        </div>
+        <div class="stats-pill">Score: <span id="score">0</span></div>
+      </header>
+
+      <main class="layout">
+        <section class="panel creator-panel">
+          <h2>Create Your Character</h2>
+          <canvas id="drawCanvas" width="320" height="220"></canvas>
+          <div class="controls">
+            <button id="clearBtn">Clear</button>
+            <button id="saveBtn">Save Character</button>
+            <button id="playBtn">Start Run</button>
+          </div>
+          <div class="palette">
+            <button class="color-swatch active" data-color="#111827" style="background-color: #111827;"></button>
+            <button class="color-swatch" data-color="#ef4444" style="background-color: #ef4444;"></button>
+            <button class="color-swatch" data-color="#3b82f6" style="background-color: #3b82f6;"></button>
+            <button class="color-swatch" data-color="#10b981" style="background-color: #10b981;"></button>
+            <button class="color-swatch" data-color="#f59e0b" style="background-color: #f59e0b;"></button>
+            <button class="color-swatch" data-color="#ffffff" style="background-color: #ffffff;"></button>
+          </div>
+          <div class="preview-box">
+            <h3>Character Preview</h3>
+            <canvas id="previewCanvas" width="96" height="96"></canvas>
+            <p id="statusText">Draw a quick character and save it.</p>
+          </div>
+        </section>
+
+        <section class="panel game-panel">
+          <h2>Time Quest Runner</h2>
+          <div class="era-row">
+            <button class="era-btn active" data-era="prehistoric">Prehistoric</button>
+            <button class="era-btn" data-era="medieval">Medieval</button>
+            <button class="era-btn" data-era="future">Future</button>
+          </div>
+          <div class="canvas-container">
+            <canvas id="gameCanvas" width="420" height="560"></canvas>
+            <div id="gameOverOverlay" class="hidden">
+              <h3>Game Over!</h3>
+              <p>Score: <span id="finalScore">0</span></p>
+              <button id="restartBtn">Play Again</button>
+            </div>
+          </div>
+          <div class="hud">
+            <div>Coins: <span id="coins">0</span></div>
+            <div>Best: <span id="bestScore">0</span></div>
+          </div>
+          <div class="lane-controls">
+            <button data-lane="-1">←</button>
+            <button data-lane="0">Stay</button>
+            <button data-lane="1">→</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+</html>
