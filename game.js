@@ -296,8 +296,15 @@ function drawGame() {
 
   // Draw Player
   if (characterImage) {
+    // Draw a "force field" bubble behind the character so it NEVER blends into the background
+    gameCtx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+    gameCtx.beginPath();
+    gameCtx.arc(player.x + player.width/2, player.y + player.height/2, player.width/2 + 5, 0, Math.PI * 2);
+    gameCtx.fill();
+    
+    // Draw the character itself
     gameCtx.shadowColor = 'rgba(255, 255, 255, 0.8)';
-    gameCtx.shadowBlur = 15;
+    gameCtx.shadowBlur = 10;
     gameCtx.drawImage(characterImage, player.x, player.y, player.width, player.height);
     gameCtx.shadowBlur = 0;
   } else {
