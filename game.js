@@ -58,20 +58,17 @@ const ERAS = {
   prehistoric: {
     bg: '#451a03', // dark brown
     laneLines: '#78350f',
-    obstacleColor: '#78716c', // rock gray
-    obstacleShape: 'circle'
+    obstacleEmojis: ['🌲', '🌳'] // Trees
   },
   medieval: {
     bg: '#1e293b', // slate
     laneLines: '#334155',
-    obstacleColor: '#b45309', // wood brown
-    obstacleShape: 'rect'
+    obstacleEmojis: ['🐦', '🦅'] // Birds
   },
   future: {
-    bg: '#0f172a', // dark blue
-    laneLines: '#0284c7', // bright blue
-    obstacleColor: '#06b6d4', // cyan laser
-    obstacleShape: 'laser'
+    bg: '#2563eb', // Brighter futuristic blue so character is very visible
+    laneLines: '#67e8f9', // Bright neon cyan lines
+    obstacleEmojis: ['🚗', '🏎️'] // Cars
   }
 };
 
@@ -189,7 +186,7 @@ function spawnEntity() {
         type: 'coin'
       });
     } else {
-      const emojis = ['🚗', '🐦', '🌲'];
+      const emojis = ERAS[currentEra].obstacleEmojis;
       obstacles.push({
         lane: lane,
         y: -50,
