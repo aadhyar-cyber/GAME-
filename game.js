@@ -37,11 +37,11 @@ bestScoreEl.textContent = bestScore;
 // Player state
 const player = {
   lane: 0, // -1, 0, 1
-  width: 48,
-  height: 48,
-  y: gameCanvas.height - 100,
-  targetX: gameCanvas.width / 2 - 24,
-  x: gameCanvas.width / 2 - 24, // current x for smoothing
+  width: 80,
+  height: 80,
+  y: gameCanvas.height - 120,
+  targetX: gameCanvas.width / 2 - 40,
+  x: gameCanvas.width / 2 - 40, // current x for smoothing
 };
 
 const LANE_WIDTH = gameCanvas.width / 3;
@@ -79,7 +79,7 @@ const ERAS = {
 function setupDrawing() {
   drawCtx.lineCap = 'round';
   drawCtx.lineJoin = 'round';
-  drawCtx.lineWidth = 8;
+  drawCtx.lineWidth = 16;
   
   // Leave background transparent so it doesn't cover game
   drawCtx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
@@ -296,7 +296,10 @@ function drawGame() {
 
   // Draw Player
   if (characterImage) {
+    gameCtx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+    gameCtx.shadowBlur = 15;
     gameCtx.drawImage(characterImage, player.x, player.y, player.width, player.height);
+    gameCtx.shadowBlur = 0;
   } else {
     // Fallback if they didn't save
     gameCtx.fillStyle = '#ffffff';
@@ -347,6 +350,7 @@ function startGame() {
   if (!characterImage) {
     statusText.textContent = 'Please save your character first!';
     statusText.style.color = '#ef4444';
+    alert("Please draw your character and click 'Save Character' first!");
     return;
   }
   
