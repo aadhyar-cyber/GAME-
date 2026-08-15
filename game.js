@@ -299,17 +299,20 @@ function drawGame() {
 
   // Draw Player
   if (characterImage) {
-    // Draw a "force field" bubble behind the character so it NEVER blends into the background
-    gameCtx.fillStyle = 'rgba(255, 255, 255, 0.8)'; // Lighter color for visibility
-    gameCtx.beginPath();
-    gameCtx.arc(player.x + player.width/2, player.y + player.height/2, player.width/2 + 10, 0, Math.PI * 2);
-    gameCtx.fill();
+    // Apply a realistic drop shadow for the character
+    gameCtx.shadowColor = 'rgba(0, 0, 0, 0.6)';
+    gameCtx.shadowBlur = 8;
+    gameCtx.shadowOffsetX = 5;
+    gameCtx.shadowOffsetY = 10;
     
     // Draw the character itself
-    gameCtx.shadowColor = 'rgba(255, 255, 255, 1)';
-    gameCtx.shadowBlur = 20;
     gameCtx.drawImage(characterImage, player.x, player.y, player.width, player.height);
+    
+    // Reset shadow
     gameCtx.shadowBlur = 0;
+    gameCtx.shadowOffsetX = 0;
+    gameCtx.shadowOffsetY = 0;
+    gameCtx.shadowColor = 'transparent';
   } else {
     // Fallback if they didn't save
     gameCtx.fillStyle = '#ffffff';
