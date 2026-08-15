@@ -128,6 +128,15 @@ function setupDrawing() {
       document.querySelector('.color-swatch.active').classList.remove('active');
       e.target.classList.add('active');
       currentColor = e.target.dataset.color;
+      
+      // Change background for visibility when drawing with white
+      if (currentColor === '#ffffff') {
+        drawCanvas.style.background = '#111827';
+        previewCanvas.style.background = '#111827';
+      } else {
+        drawCanvas.style.background = '#ffffff';
+        previewCanvas.style.background = '#ffffff';
+      }
     });
   });
 
