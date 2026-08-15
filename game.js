@@ -224,13 +224,15 @@ function updateGame() {
     let obs = obstacles[i];
     obs.y += speed;
     
-    // Collision detection
+    // Collision detection with a smaller, fairer hitbox (player visual is 100x100, hitbox is 50x50)
     let obsX = getLaneCenterX(obs.lane) - (obs.width/2);
+    let hitPaddingX = 25;
+    let hitPaddingY = 25;
     if (
-      player.x < obsX + obs.width &&
-      player.x + player.width > obsX &&
-      player.y < obs.y + obs.height &&
-      player.y + player.height > obs.y
+      player.x + hitPaddingX < obsX + obs.width &&
+      player.x + player.width - hitPaddingX > obsX &&
+      player.y + hitPaddingY < obs.y + obs.height &&
+      player.y + player.height - hitPaddingY > obs.y
     ) {
       gameOver();
     }
@@ -247,13 +249,15 @@ function updateGame() {
     let coin = pickups[i];
     coin.y += speed;
     
-    // Collision detection
+    // Collision detection with smaller hitbox
     let coinX = getLaneCenterX(coin.lane) - (coin.width/2);
+    let hitPaddingX = 25;
+    let hitPaddingY = 25;
     if (
-      player.x < coinX + coin.width &&
-      player.x + player.width > coinX &&
-      player.y < coin.y + coin.height &&
-      player.y + player.height > coin.y
+      player.x + hitPaddingX < coinX + coin.width &&
+      player.x + player.width - hitPaddingX > coinX &&
+      player.y + hitPaddingY < coin.y + coin.height &&
+      player.y + player.height - hitPaddingY > coin.y
     ) {
       pickups.splice(i, 1);
       coins++;
