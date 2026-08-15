@@ -37,11 +37,11 @@ bestScoreEl.textContent = bestScore;
 // Player state
 const player = {
   lane: 0, // -1, 0, 1
-  width: 80,
-  height: 80,
-  y: gameCanvas.height - 120,
-  targetX: gameCanvas.width / 2 - 40,
-  x: gameCanvas.width / 2 - 40, // current x for smoothing
+  width: 100,
+  height: 100,
+  y: gameCanvas.height - 140,
+  targetX: gameCanvas.width / 2 - 50,
+  x: gameCanvas.width / 2 - 50, // current x for smoothing
 };
 
 const LANE_WIDTH = gameCanvas.width / 3;
@@ -58,7 +58,7 @@ const ERAS = {
   prehistoric: {
     bg: '#451a03', // dark brown
     laneLines: '#78350f',
-    obstacleEmojis: ['🌲'] // Only Trees
+    obstacleEmojis: ['🌲', '🐦'] // Trees and Birds
   },
   medieval: {
     bg: '#1e293b', // slate
@@ -296,14 +296,14 @@ function drawGame() {
   // Draw Player
   if (characterImage) {
     // Draw a "force field" bubble behind the character so it NEVER blends into the background
-    gameCtx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+    gameCtx.fillStyle = 'rgba(255, 255, 255, 0.8)'; // Lighter color for visibility
     gameCtx.beginPath();
-    gameCtx.arc(player.x + player.width/2, player.y + player.height/2, player.width/2 + 5, 0, Math.PI * 2);
+    gameCtx.arc(player.x + player.width/2, player.y + player.height/2, player.width/2 + 10, 0, Math.PI * 2);
     gameCtx.fill();
     
     // Draw the character itself
-    gameCtx.shadowColor = 'rgba(255, 255, 255, 0.8)';
-    gameCtx.shadowBlur = 10;
+    gameCtx.shadowColor = 'rgba(255, 255, 255, 1)';
+    gameCtx.shadowBlur = 20;
     gameCtx.drawImage(characterImage, player.x, player.y, player.width, player.height);
     gameCtx.shadowBlur = 0;
   } else {
